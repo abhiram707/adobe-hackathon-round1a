@@ -1,7 +1,7 @@
 
 import os
 import json
-import fitz  # PyMuPDF
+import fitz  
 from collections import defaultdict, Counter
 from sklearn.cluster import KMeans
 import numpy as np
@@ -14,7 +14,7 @@ def is_heading_candidate(span):
     text = span['text'].strip()
     if not text or len(text) < 3:
         return False
-    if re.match(r"^\d+$", text):  # Page numbers
+    if re.match(r"^\d+$", text):  
         return False
     if re.match(r"^table of contents", text, re.I):
         return False
@@ -32,7 +32,7 @@ def extract_candidates(doc):
                             "text": span['text'].strip(),
                             "font": span['font'],
                             "size": round(span['size'], 2),
-                            "flags": span['flags'],  # bold, italic
+                            "flags": span['flags'],  
                             "page": page_num + 1,
                             "y": span['bbox'][1]
                         })
